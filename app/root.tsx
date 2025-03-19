@@ -65,7 +65,7 @@ export function App() {
         <Links />
       </head>
       <body>
-        <Outlet />;
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
       </body>
