@@ -1,7 +1,21 @@
+import { redirect } from "@remix-run/node";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { cn } from "~/lib/utils";
+
+// docs
+// https://remix.run/resources/remix-auth
+// https://github.com/sergiodxa/remix-auth-form
+export async function action({ request }: { request: Request }) {
+  const formData = await request.formData();
+
+  // "user-pass" might be another option, test later, use "form" for now
+  // const user = await authenticator.authenticate("user-pass", request);
+  // const user = await authenticator.authenticate("form", request);
+
+  return redirect("/dashboard");
+}
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,7 +32,7 @@ export default function LoginForm({
   return (
     <Layout>
       <div className={cn("flex flex-col gap-6", className)} {...props}>
-        <form>
+        <form action="/login" method="post">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">

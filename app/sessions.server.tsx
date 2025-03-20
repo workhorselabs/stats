@@ -17,6 +17,5 @@ const sessionStorage = createCookieSessionStorage({
       : {}),
   },
 });
-console.log(" sessionStorage ===========>", sessionStorage);
 
 export const themeSessionResolver = createThemeSessionResolver(sessionStorage);
