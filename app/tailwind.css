@@ -85,7 +85,7 @@ body {
   } */
 
   /* Slate */
-  @layer base {
+  /* @layer base {
     :root {
       --background: 0 0% 100%;
       --foreground: 222.2 84% 4.9%;
@@ -121,7 +121,6 @@ body {
       --sidebar-border: 220 13% 91%;
       --sidebar-ring: 217.2 91.2% 59.8%;
     }
-
     .dark {
       --background: 222.2 84% 4.9%;
       --foreground: 210 40% 98%;
@@ -156,10 +155,10 @@ body {
       --sidebar-border: 240 3.7% 15.9%;
       --sidebar-ring: 217.2 91.2% 59.8%;
     }
-  }
+  } */
 
   /* Zinc */
-  /* :root {
+  :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -220,15 +219,15 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-      --sidebar-background: 240 5.9% 10%;
-      --sidebar-foreground: 240 4.8% 95.9%;
-      --sidebar-primary: 224.3 76.3% 48%;
-      --sidebar-primary-foreground: 0 0% 100%;
-      --sidebar-accent: 240 3.7% 15.9%;
-      --sidebar-accent-foreground: 240 4.8% 95.9%;
-      --sidebar-border: 240 3.7% 15.9%;
-      --sidebar-ring: 217.2 91.2% 59.8%;
-  } */
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 
   /* Blue from shadcncolors.com */
   /* @layer base {
@@ -267,7 +266,6 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     }
-
     .dark,
     :root[class~="dark"] {
       --background: 222.2 84% 4.9%;
