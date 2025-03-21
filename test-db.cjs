@@ -1,10 +1,10 @@
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  user: "remix_user", // your actual db user
+  user: "wonjae", // your actual db user
   host: "localhost",
   database: "remix_db", // your actual db name
-  password: "your_secure_password", // your actual db password
+  password: "testing1128", // your actual db password
   port: 5432,
 });
 
