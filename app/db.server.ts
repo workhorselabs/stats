@@ -1,10 +1,12 @@
-import { Pool } from "pg";
+import pg from "pg";
+
+const { Pool } = pg;
 
 const pool = new Pool({
-  user: "remix_user",
+  user: "wonjae",
   host: "localhost",
-  database: "remix_db",
-  password: "your_secure_password",
+  database: "stats",
+  password: "testing1128",
   port: 5432, // Default PostgreSQL port
 });
 
