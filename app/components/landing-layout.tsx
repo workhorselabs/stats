@@ -1,3 +1,4 @@
+import { LandingFooter } from "./landing-footer";
 import { Navbar } from "./landing-navigation";
 
 export function LandingLayout({ children }: { children: React.ReactNode }) {
@@ -6,6 +7,7 @@ export function LandingLayout({ children }: { children: React.ReactNode }) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <Navbar />
         {children}
+        <LandingFooter />
       </section>
     </main>
   );

@@ -1,9 +1,10 @@
-import { BlogList } from "~/components/blog-list";
+import { Outlet } from "@remix-run/react";
 import { LandingLayout } from "~/components/landing-layout";
-export default function Page() {
+
+export default function Layout() {
   return (
     <LandingLayout>
-      <BlogList />
+      <Outlet />
     </LandingLayout>
   );
 }

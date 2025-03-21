@@ -11,17 +11,43 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async () => {
-  const result = await query("SELECT NOW()");
+  const users = await query(
+    "SELECT id, username, email, created_at FROM users"
+  );
 
-  return json({ now: result[0].now });
+  return json({ users });
 };
 
 export default function Index() {
-  const data = useLoaderData<{ now: string }>();
+  const data = useLoaderData<{
+    users: {
+      id: number;
+      username: string;
+      email: string;
+      created_at: string;
+    }[];
+  }>();
 
   return (
     <LandingLayout>
-      <div>{data.now}</div>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {data.users.map((user) => (
+          <div
+            key={user.id}
+            className="rounded-lg border bg-card text-card-foreground shadow-sm"
+          >
+            <div className="p-6 space-y-2">
+              <h3 className="text-2xl font-semibold leading-none tracking-tight">
+                {user.username}
+              </h3>
+              <p className="text-sm text-muted-foreground">{user.email}</p>
+              <div className="text-sm text-muted-foreground">
+                Joined {new Date(user.created_at).toLocaleDateString()}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </LandingLayout>
   );
 }
