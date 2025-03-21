@@ -145,8 +145,11 @@ const Navbar = ({
         {/* Desktop Menu */}
         <nav className="hidden justify-between lg:flex">
           <div className="flex items-center gap-6">
-            <a href={logo.url} className="flex items-center gap-2">
-              {/* <span className="text-lg font-semibold">Wonjae.info</span> */}
+            <a
+              // href={logo.url}
+              className="flex items-center gap-2"
+            >
+              <span className="text-lg font-semibold">WORKHORSE</span>
             </a>
             <div className="flex items-center">
               <NavigationMenu>
