@@ -64,7 +64,15 @@ const Navbar = ({
     title: "Workhorse Running",
   },
   menu = [
-    { title: "Home", url: "/" },
+    { title: "About", url: "/about" },
+    {
+      title: "Projects",
+      url: "/projects",
+    },
+    {
+      title: "Blog",
+      url: "/blog",
+    },
     {
       title: "Products",
       url: "#",
@@ -125,18 +133,6 @@ const Navbar = ({
           url: "#",
         },
       ],
-    },
-    {
-      title: "Projects",
-      url: "/projects",
-    },
-    // {
-    //   title: "Pricing",
-    //   url: "#",
-    // },
-    {
-      title: "Blog",
-      url: "/blog",
     },
   ],
   auth = {
