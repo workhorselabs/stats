@@ -236,11 +236,13 @@ const renderMenuItem = (item: MenuItem) => {
       <NavigationMenuItem key={item.title}>
         <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground">
-          {item.items.map((subItem) => (
-            <NavigationMenuLink asChild key={subItem.title} className="w-80">
-              <SubMenuLink item={subItem} />
-            </NavigationMenuLink>
-          ))}
+          <div className="flex w-80 flex-col gap-2 p-2">
+            {item.items.map((subItem) => (
+              <NavigationMenuLink asChild key={subItem.title}>
+                <SubMenuLink item={subItem} />
+              </NavigationMenuLink>
+            ))}
+          </div>
         </NavigationMenuContent>
       </NavigationMenuItem>
     );
