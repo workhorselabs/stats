@@ -63,18 +63,6 @@ const Navbar = ({
   menu = [
     { title: "About", url: "/about" },
     {
-      title: "Projects",
-      url: "/projects",
-    },
-    {
-      title: "Blog",
-      url: "/blog",
-    },
-    {
-      title: "FAQ",
-      url: "/faq",
-    },
-    {
       title: "Products",
       url: "#",
       items: [
@@ -134,6 +122,18 @@ const Navbar = ({
           url: "#",
         },
       ],
+    },
+    {
+      title: "Projects",
+      url: "/projects",
+    },
+    {
+      title: "Blog",
+      url: "/blog",
+    },
+    {
+      title: "FAQ",
+      url: "/faq",
     },
   ],
   auth = {
