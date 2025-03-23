@@ -5,7 +5,7 @@ import { query } from "~/db.server";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
+    { title: "Workhose Running" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
