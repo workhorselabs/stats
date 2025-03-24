@@ -1,7 +1,7 @@
 import { json, type MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { LandingLayout } from "~/components/landing-layout";
-import { query } from "~/db.server";
+import { query } from "~/utils/db.server";
 
 export const meta: MetaFunction = () => {
   return [
