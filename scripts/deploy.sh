@@ -9,7 +9,7 @@ echo "📦 Installing dependencies..."
 npm install
 
 echo "🛡️  Checking migrations for destructive operations..."
-if grep -riE 'DROP TABLE|DROP COLUMN|ALTER TABLE .* DROP COLUMN' prisma/migrations/*.sql; then
+if grep -riE 'DROP TABLE|DROP COLUMN|ALTER TABLE .* DROP COLUMN' prisma/migration/*.sql; then
   echo "⚠️  WARNING: Destructive SQL found in migrations!"
   echo "❌ Deployment aborted. Review migration SQL before proceeding."
   exit 1
