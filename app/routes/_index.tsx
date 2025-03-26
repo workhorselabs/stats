@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async () => {
-  const users = await query("SELECT id, email, createdAt FROM Users");
+  const users = await query("SELECT id, email, createdAt FROM User");
 
   return json({ users });
 };
