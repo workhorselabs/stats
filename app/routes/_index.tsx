@@ -11,9 +11,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async () => {
-  const users = await query(
-    "SELECT id, username, email, created_at FROM users"
-  );
+  const users = await query("SELECT id, email, createdAt FROM Users");
 
   return json({ users });
 };
@@ -22,9 +20,8 @@ export default function Index() {
   const data = useLoaderData<{
     users: {
       id: number;
-      username: string;
       email: string;
-      created_at: string;
+      createdAt: string;
     }[];
   }>();
 
@@ -38,11 +35,10 @@ export default function Index() {
           >
             <div className="p-6 space-y-2">
               <h3 className="text-2xl font-semibold leading-none tracking-tight">
-                {user.username}
+                {user.email}
               </h3>
-              <p className="text-sm text-muted-foreground">{user.email}</p>
               <div className="text-sm text-muted-foreground">
-                Joined {new Date(user.created_at).toLocaleDateString()}
+                Joined {new Date(user.createdAt).toLocaleDateString()}
               </div>
             </div>
           </div>
