@@ -80,22 +80,30 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <UserCircleIcon />
-                Account
+                <a href="/account">
+                  <UserCircleIcon />
+                  Account
+                </a>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <CreditCardIcon />
-                Billing
+                <a href="/billing">
+                  <CreditCardIcon />
+                  Billing
+                </a>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <BellIcon />
-                Notifications
+                <a href="/notifications">
+                  <BellIcon />
+                  Notifications
+                </a>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOutIcon />
-              Log out
+            <DropdownMenuItem asChild>
+              <a href="/logout">
+                <LogOutIcon />
+                Log out
+              </a>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -1,41 +1,47 @@
+import type { User } from "@prisma/client";
+import { compare, hash } from "bcryptjs";
 import { Authenticator } from "remix-auth";
 import { FormStrategy } from "remix-auth-form";
 import invariant from "tiny-invariant";
-interface User {
-  name: string;
+import { prisma } from "~/utils/prisma.server";
+
+async function hashPassword(password: string) {
+  const hashedPassword = await hash(password, 10);
+  console.log("Hashed password:", hashedPassword);
 }
 
-const findOrCreateUser = async (username: string, hashedPassword: string) => {
-  return {
-    name: username,
-  };
+export const FORM_STRATEGY = "user-pass";
+
+const findUser = async (email: string, password: string) => {
+  const user = await prisma.user.findUnique({
+    where: { email: email },
+  });
+
+  if (!user) throw new Error("Invalid email");
+
+  const isValid = await compare(password, user.password);
+
+  if (!isValid) throw new Error("Invalid password");
+
+  return user;
 };
 
 export let authenticator = new Authenticator<User>();
 
 // Tell the Authenticator to use the form strategy
 authenticator.use(
-  new FormStrategy(async ({ form, request }) => {
-    // Here you can use `form` to access and input values from the form.
-    // and also use `request` to access more data
-    let username = form.get("username"); // or email... etc
-    let password = form.get("password");
+  new FormStrategy(async ({ form }) => {
+    const email = form.get("email");
+    const password = form.get("password");
 
-    // You can validate the inputs however you want
-    invariant(typeof username === "string", "username must be a string");
-    invariant(username.length > 0, "username must not be empty");
-
+    invariant(typeof email === "string", "email must be a string");
+    invariant(email.length > 0, "email must not be empty");
     invariant(typeof password === "string", "password must be a string");
     invariant(password.length > 0, "password must not be empty");
 
-    // And if you have a password you should hash it
-    let hashedPassword = "dummy-dashed-password";
-    // let hashedPassword = await hash(password);
+    const user = await findUser(email, password);
 
-    // And finally, you can find, or create, the user
-    let user = await findOrCreateUser(username, hashedPassword);
-
-    // And return the user as the Authenticator expects it
     return user;
-  })
+  }),
+  FORM_STRATEGY
 );
