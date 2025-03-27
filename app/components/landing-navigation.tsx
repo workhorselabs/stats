@@ -54,8 +54,8 @@ interface NavbarProps {
 
 const Navbar = ({
   logo = {
-    url: "https://www.shadcnblocks.com",
-    src: "https://shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg",
+    url: "/",
+    src: "/",
     alt: "logo",
     // title: "Workhose Racing",
     title: "Workhose Running",
