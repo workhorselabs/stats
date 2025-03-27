@@ -79,19 +79,19 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <a href="/account">
                   <UserCircleIcon />
                   Account
                 </a>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <a href="/billing">
                   <CreditCardIcon />
                   Billing
                 </a>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <a href="/notifications">
                   <BellIcon />
                   Notifications
