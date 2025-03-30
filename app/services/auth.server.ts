@@ -1,9 +1,11 @@
 import type { User } from "@prisma/client";
+import { redirect } from "@remix-run/node";
 import { compare, hash } from "bcryptjs";
 import { Authenticator } from "remix-auth";
 import { FormStrategy } from "remix-auth-form";
 import invariant from "tiny-invariant";
 import { prisma } from "~/utils/prisma.server";
+import { getSession } from "~/utils/session.server";
 
 async function hashPassword(password: string) {
   const hashedPassword = await hash(password, 10);
@@ -45,3 +47,15 @@ authenticator.use(
   }),
   FORM_STRATEGY
 );
+
+// authenticated routes
+export async function requireUserSession(request: Request) {
+  const session = await getSession(request.headers.get("Cookie"));
+  const user = session.get("user");
+
+  if (!user) {
+    throw redirect("/login"); // or wherever your login route is
+  }
+
+  return user;
+}
