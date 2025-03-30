@@ -16,7 +16,7 @@ import { sessionStorage } from "~/utils/session.server";
 export const loader: LoaderFunction = async ({ request }) => {
   // Already logged in? Redirect to dashboard
   let session = await sessionStorage.getSession(request.headers.get("cookie"));
-  if (session.has("user")) return redirect("/dashboard");
+  if (session.has("user")) return redirect("/app");
 
   return null;
 };
@@ -30,7 +30,7 @@ export const action: ActionFunction = async ({ request }) => {
     );
     session.set("user", user);
 
-    return redirect("/dashboard", {
+    return redirect("/app", {
       headers: {
         "Set-Cookie": await sessionStorage.commitSession(session),
       },
