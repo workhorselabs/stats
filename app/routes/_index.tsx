@@ -1,7 +1,6 @@
 import { json, type MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { LandingLayout } from "~/components/landing-layout";
-import { query } from "~/utils/db.server";
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,8 +10,30 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async () => {
-  const users = await query('SELECT id, email, "createdAt" FROM "User"');
+  // const users = await query('SELECT id, email, "createdAt" FROM "User"');
 
+  const users = [
+    {
+      id: 1,
+      email: "test@test.com",
+      createdAt: "2021-01-01",
+    },
+    {
+      id: 1,
+      email: "test@test.com",
+      createdAt: "2021-01-01",
+    },
+    {
+      id: 1,
+      email: "test@test.com",
+      createdAt: "2021-01-01",
+    },
+    {
+      id: 1,
+      email: "test@test.com",
+      createdAt: "2021-01-01",
+    },
+  ];
   return json({ users });
 };
 
