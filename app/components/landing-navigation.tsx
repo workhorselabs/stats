@@ -57,8 +57,8 @@ const Navbar = ({
     url: "/",
     src: "/",
     alt: "logo",
-    // title: "Workhose Racing",
-    title: "Workhose Running",
+    // title: "Workhorse Racing",
+    title: "Workhorse Running",
   },
   menu = [
     { title: "About", url: "/about" },
