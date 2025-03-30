@@ -14,6 +14,20 @@ async function main() {
   });
 
   console.log("Seeded user!");
+
+  const user = await prisma.user.findFirst();
+
+  if (!user) throw new Error("No user found");
+
+  await prisma.post.create({
+    data: {
+      title: "Hello World",
+      slug: "hello-world",
+      content: "This is a test post",
+      authorId: user.id,
+    },
+  });
+  console.log("Seeded blog post!");
 }
 
 main()
