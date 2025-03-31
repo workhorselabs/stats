@@ -3,7 +3,9 @@
 # for cloud
 # psql "postgresql://wonjae:fK28rDnWm93yXuLq0Zhv@5.161.58.25:5432/stats" <<EOF 
 # for local
+# psql "postgresql://secondbrain@localhost:5432/stats_local" <<EOF
 # using hashed password
+
 psql "postgresql://secondbrain@localhost:5432/stats_local" <<EOF
 -- Insert a test user
 INSERT INTO "User" (id, email, password, "createdAt")
