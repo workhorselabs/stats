@@ -31,6 +31,22 @@ export const links: LinksFunction = () => [
   },
 ];
 
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error("Global error:", error);
+
+  return (
+    <html>
+      <head>
+        <title>Oops!</title>
+      </head>
+      <body>
+        <h1>Something went wrong globally</h1>
+        <pre>{error.message}</pre>
+      </body>
+    </html>
+  );
+}
+
 // Return the theme from the session storage using the loader
 export async function loader({ request }: LoaderFunctionArgs) {
   const { getTheme } = await themeSessionResolver(request);
