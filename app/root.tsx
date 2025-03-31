@@ -6,14 +6,17 @@ import {
 
 import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import {
+  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useRouteError,
 } from "@remix-run/react";
 
+import { ErrorAlert } from "~/components/error-alert";
 import { cn } from "./lib/utils";
 import { themeSessionResolver } from "./sessions.server";
 import "./tailwind.css";
@@ -31,22 +34,34 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error("Global error:", error);
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  let title = "Unexpected Error";
+  let message = "Something went wrong.";
+
+  if (isRouteErrorResponse(error)) {
+    title = `${error.status} ${error.statusText}`;
+    message = error.data || "An error occurred while loading the page.";
+  } else if (error instanceof Error) {
+    message = error.message;
+  } else if (typeof error === "string") {
+    message = error;
+  }
 
   return (
-    <html>
+    <html lang="en">
       <head>
-        <title>Oops!</title>
+        <title>{title}</title>
       </head>
-      <body>
-        <h1>Something went wrong globally</h1>
-        <pre>{error.message}</pre>
+      <body className="bg-muted text-foreground min-h-screen flex items-center justify-center">
+        <main className="max-w-md mx-auto p-6">
+          <ErrorAlert title={title} message={message} />
+        </main>
       </body>
     </html>
   );
 }
-
 // Return the theme from the session storage using the loader
 export async function loader({ request }: LoaderFunctionArgs) {
   const { getTheme } = await themeSessionResolver(request);
