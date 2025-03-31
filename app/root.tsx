@@ -16,7 +16,6 @@ import {
   useRouteError,
 } from "@remix-run/react";
 
-import { ErrorAlert } from "~/components/error-alert";
 import { cn } from "./lib/utils";
 import { themeSessionResolver } from "./sessions.server";
 import "./tailwind.css";
@@ -37,45 +36,27 @@ export const links: LinksFunction = () => [
 export function ErrorBoundary() {
   const error = useRouteError();
 
-  let title = "Unexpected Error";
-  let message = "Unexpected Server Error";
-
   if (isRouteErrorResponse(error)) {
-    title = `${error.status} ${error.statusText}`;
-    message =
-      typeof error.data === "string"
-        ? error.data
-        : "Something went wrong while loading this page.";
+    return (
+      <div>
+        <h1>
+          {error.status} {error.statusText}
+        </h1>
+        <p>{error.data}</p>
+      </div>
+    );
   } else if (error instanceof Error) {
-    message = error.message;
-  } else if (typeof error === "string") {
-    message = error;
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </div>
+    );
+  } else {
+    return <h1>Unknown Error</h1>;
   }
-
-  return (
-    <html lang="en" className="h-full">
-      <head>
-        <Meta />
-        <Links />
-        <title>{title}</title>
-      </head>
-      <body className="h-full bg-background text-foreground">
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
-          <div className="max-w-md w-full">
-            <ErrorAlert title={title} message={message} />
-            <div className="mt-6 text-sm text-muted-foreground">
-              <p>
-                If the problem persists, try refreshing the page or come back
-                later.
-              </p>
-            </div>
-          </div>
-        </div>
-        <ScrollRestoration />
-        <Scripts />
-      </body>
-    </html>
-  );
 }
 
 // Return the theme from the session storage using the loader
