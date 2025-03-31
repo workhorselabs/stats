@@ -13,6 +13,16 @@ export const loader: LoaderFunction = async () => {
   return json({ posts });
 };
 
+// At the bottom of your blog route file
+export function ErrorBoundary({ error }: { error: Error }) {
+  return (
+    <div className="p-4 text-red-500">
+      <h2>Something went wrong!</h2>
+      <pre>{error.message}</pre>
+    </div>
+  );
+}
+
 export default function Page() {
   const { posts } = useLoaderData<typeof loader>();
 
