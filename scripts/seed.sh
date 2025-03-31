@@ -15,7 +15,8 @@ VALUES (
   '\$2b\$10\$7yJZg/9YJZuB6KQbl3t8xut12IlA6hUQ5swXuQ/kTlxaJ0X2dV2OO',
   NOW()
 )
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET
+  email = EXCLUDED.email;
 
 -- Insert a dummy blog post
 INSERT INTO "Post" (id, title, slug, content, published, "authorId", "createdAt", "updatedAt")
