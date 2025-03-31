@@ -1,18 +1,15 @@
 #!/bin/bash
 
-# Move to project root
+# Go to the root of the project
 cd "$(dirname "$0")/.."
 
-# Load environment variables from .env
+# Load .env variables
 set -o allexport
 source .env
 set +o allexport
 
-# Strip ?schema=public from DATABASE_URL (psql doesn't support query params)
-CLEAN_DB_URL="${DATABASE_URL%%\?schema=*}"
-
-# Run SQL seed using cleaned DB URL
-psql "$CLEAN_DB_URL" <<EOF
+# Run seed SQL using $DATABASE_URL
+psql "$DATABASE_URL" <<EOF
 -- Insert a test user
 INSERT INTO "User" (id, email, password, "createdAt")
 VALUES (
