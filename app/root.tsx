@@ -38,11 +38,14 @@ export function ErrorBoundary() {
   const error = useRouteError();
 
   let title = "Unexpected Error";
-  let message = "Something went wrong.";
+  let message = "Unexpected Server Error";
 
   if (isRouteErrorResponse(error)) {
     title = `${error.status} ${error.statusText}`;
-    message = error.data || "An error occurred while loading the page.";
+    message =
+      typeof error.data === "string"
+        ? error.data
+        : "Something went wrong while loading this page.";
   } else if (error instanceof Error) {
     message = error.message;
   } else if (typeof error === "string") {
@@ -50,18 +53,31 @@ export function ErrorBoundary() {
   }
 
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
+        <Meta />
+        <Links />
         <title>{title}</title>
       </head>
-      <body className="bg-muted text-foreground min-h-screen flex items-center justify-center">
-        <main className="max-w-md mx-auto p-6">
-          <ErrorAlert title={title} message={message} />
-        </main>
+      <body className="h-full bg-background text-foreground">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
+          <div className="max-w-md w-full">
+            <ErrorAlert title={title} message={message} />
+            <div className="mt-6 text-sm text-muted-foreground">
+              <p>
+                If the problem persists, try refreshing the page or come back
+                later.
+              </p>
+            </div>
+          </div>
+        </div>
+        <ScrollRestoration />
+        <Scripts />
       </body>
     </html>
   );
 }
+
 // Return the theme from the session storage using the loader
 export async function loader({ request }: LoaderFunctionArgs) {
   const { getTheme } = await themeSessionResolver(request);
