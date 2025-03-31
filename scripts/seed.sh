@@ -12,11 +12,11 @@ INSERT INTO "User" (id, email, password, "createdAt")
 VALUES (
   'u_test_1',
   'w@h.com',
-  '$2b$10$7yJZg/9YJZuB6KQbl3t8xut12IlA6hUQ5swXuQ/kTlxaJ0X2dV2OO',
+  '\$2b\$10\$7yJZg/9YJZuB6KQbl3t8xut12IlA6hUQ5swXuQ/kTlxaJ0X2dV2OO',
   NOW()
 )
 ON CONFLICT (id) DO NOTHING;
-EOF
+
 -- Insert a dummy blog post
 INSERT INTO "Post" (id, title, slug, content, published, "authorId", "createdAt", "updatedAt")
 VALUES (
@@ -31,4 +31,3 @@ VALUES (
 )
 ON CONFLICT (id) DO NOTHING;
 EOF
-
