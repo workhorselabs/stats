@@ -16,7 +16,6 @@ VALUES (
   NOW()
 )
 ON CONFLICT (id) DO UPDATE SET
-  email = EXCLUDED.email;
 
 -- Insert a dummy blog post
 INSERT INTO "Post" (id, title, slug, content, published, "authorId", "createdAt", "updatedAt")
